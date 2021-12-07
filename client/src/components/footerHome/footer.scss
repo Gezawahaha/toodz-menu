@@ -1,0 +1,115 @@
+.footer{
+    width: 100%;
+    border-top: 1px solid #E5E5E5;
+    //margin-top: 50px;
+    padding-top: 50px;
+
+    .wraper-footer{
+        display: flex;
+        .left{
+            padding: 10px 58px;
+            
+            img{
+                height: 166px;
+            }
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            margin-right: 55px;
+
+            .title{
+                font-size: 25px;
+                line-height: 5px;
+            }
+
+            .location-list{
+                display: flex;
+                flex-direction: column;
+            }
+            .social-list{
+                img{
+                    margin: 5px 10px ;
+                    text-shadow: black;
+                }
+            }
+    
+        }
+    }
+    
+    
+
+    .copyright{
+        text-align: center;
+        border-top: 1px solid #E5E5E5;
+        //margin-top: 50px;
+        padding: 15px 0px;
+        span{
+            
+            font-size: 10px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 960px){
+    .footer{
+        width: 100%;
+        border-top: 1px solid #E5E5E5;
+        //margin-top: 50px;
+        padding-top: 5px;
+    
+        .wraper-footer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            align-items: center;
+            .left{
+                padding: 0px 58px;
+                
+                img{
+                    height: 166px;
+                }
+            }
+            .right{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                margin-right: 0px;
+
+    
+                .title{
+                    font-size: 25px;
+                    line-height: 5px;
+                }
+    
+                .location-list{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .social-list{
+                    img{
+                        margin-right: 15px;
+                    }
+                }
+        
+            }
+        }
+        
+        
+    
+        .copyright{
+            text-align: center;
+            border-top: 1px solid #E5E5E5;
+            //margin-top: 50px;
+            padding: 15px 0px;
+            span{
+                
+                font-size: 10px;
+            }
+        }
+    }
+}

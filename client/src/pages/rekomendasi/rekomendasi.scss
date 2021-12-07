@@ -1,0 +1,164 @@
+.rekom-wraper{
+    //background-color: red;
+    margin: auto;
+    max-width: 1115px;
+    width: 100%;
+    padding: 20px;
+    .rekom-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: auto;
+        //background-color: blue;
+        .rekom-title{
+            display: flex;
+            max-width: 640px;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            h3{
+                font-size: 45px;
+                height: 60px;
+            }
+            p{
+                font-size: 24px;
+                font-weight: 500;
+                color: grey;
+            }
+        }
+
+        .rekom-quest{
+            display: flex;
+            flex-wrap: wrap;
+            .quest{
+                margin: 20px;
+                .from-title{
+                    font-weight: bold;
+                    color: black;
+                }
+                .from-input{
+                    margin: auto;
+                    min-width: 300px;
+                }
+                .btnsubmit{
+                    
+                    min-width: 300px;
+                    
+                }
+            }
+            
+        }
+
+        .result-wraper{
+            //background-color: red;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            .result-container{
+                max-width: 650px;
+                //background-color: blue;
+                margin: auto;
+                p{
+
+                }
+                .result{
+                    
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    justify-content: center;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 960px){
+    .rekom-wraper{
+        //background-color: red;
+        margin: auto;
+        max-width: 500px;
+        width: auto;
+        padding: 0px;
+
+        
+        .rekom-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: auto;
+            //background-color: blue;
+            .rekom-title{
+                display: flex;
+                max-width: 340px;
+                padding: 19px;
+                flex-direction: column;
+                justify-content: center;
+                height: fit-content;
+                
+                
+                h3{
+                    font-size: 40px;
+                    height: 160px;
+                    
+                }
+                p{
+                    font-size: 19px;
+                    font-weight: 500;
+                    color: grey;
+                    
+                }
+            }
+    
+            .rekom-quest{
+                display: flex;
+                flex-wrap: wrap;
+                padding: 19px;
+                .quest{
+                    margin: 20px;
+                    .from-title{
+                        font-weight: bold;
+                        color: black;
+                    }
+                    .from-input{
+                        margin: auto;
+                        min-width: 300px;
+                    }
+                    .btnsubmit{
+                        min-width: 300px;
+                        
+                    }
+                }
+                
+            }
+    
+        }
+        .result-wraper{
+        
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            .result-container{
+                max-width: 680px;
+                padding-bottom: 20px;
+                //background-color: blue;
+                //margin: 0px;
+                p{
+
+                }
+                .result{
+                    
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

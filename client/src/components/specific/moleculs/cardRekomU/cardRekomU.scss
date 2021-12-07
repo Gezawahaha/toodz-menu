@@ -1,0 +1,30 @@
+.boxs{
+    
+    h3{
+        //padding: 55px 0px;
+        font-family: 'Quicksand', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 45px;
+        line-height: 70px;
+        //margin-right: 110px;
+        
+    }
+}
+
+
+@media screen and (max-width: 960px){
+    .boxs{
+    
+        h3{
+            //padding: 55px 0px;
+            font-family: 'Quicksand', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 35px;
+            line-height: 50px;
+            //margin-right: 110px;
+            
+        }
+    }
+}
