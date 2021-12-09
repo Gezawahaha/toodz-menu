@@ -9,6 +9,9 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { action } from '../../redux'
 
 
 const fakeMenu = [
@@ -61,7 +64,7 @@ const fakeMenu = [
         "price": "20000",
         "food_id": "10",
         "categories": "Sides",  
-        "img": "https://foto.kontan.co.id/mLO3JF3kQK6EIfFz7rSx41eAtHA=/smart/2020/12/24/162674279p.jpg"},{ "title": "Sate Padang","price": "20000", "img": "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" },
+        "img": "https://foto.kontan.co.id/mLO3JF3kQK6EIfFz7rSx41eAtHA=/smart/2020/12/24/162674279p.jpg"},
     {   "title": "Nasi Kuning Sekut",
         "price": "20000", 
         "food_id": "11",
@@ -90,21 +93,30 @@ const fakeMenu = [
     
 ];
 
-const Menu = () => {
+
+
+export const Menu = () =>{
     //const isLoading = false;
+    
 
     const [categori, setCategori] = useState('all');
     const handleChangeCategori =(e)=>{
         //console.log('data categor', e.target.value);
         setCategori(e.target.value)
     };
+    const state = useSelector((state) => state)
+    const dispatch = useDispatch()
 
 
-    return (
+    //const AC = ''
 
+    //console.log(AC);
+    //console.log(state.orderData.totalOrder);
     
+    
+    return (
         <div className="container-menu">
-            {/* <div className="menu-head">
+            <div className="menu-head">
                     <div className="filter">
                     <InputLabel className="from-title">Menu</InputLabel>
                         <FormControl className="from-input">
@@ -123,45 +135,42 @@ const Menu = () => {
                             <MenuItem value={'Food'}>Main Course</MenuItem>
                             <MenuItem value={'Sides'}>Sides</MenuItem>
                             <MenuItem value={'Dessert'}>Dessert</MenuItem>
+                            <MenuItem value={'Drink'}>Drink</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
                     <div className="search">
                         
                     </div>
-            </div> */}
+            </div>
             <div className="wraper-menu">
-            { 
-                            fakeMenu.map((fakeMenu, index) => (
-                                <CardMenu key={index} price={fakeMenu.price} title={fakeMenu.title} image={fakeMenu.img}/>
-                            ))
-                        }
+            
                 {   categori !== 'all'
                     ?
-                    <div >
-                        {console.log("DATA :",fakeMenu)}
-                        {/* { 
-                            fakeMenu.map((fakeMenu, index) => (
-                                console.log("DATA :",fakeMenu[index].categories)
-                                ?
-                                <CardMenu key={index} price={fakeMenu.price} title={fakeMenu.title} image={fakeMenu.img}/>
+                    <div className="wraper-menu" >
+                        {/* {console.log("DATA :",fakeMenu[1].categories, "categori :" , categori)} */}
+                        { 
+                            fakeMenu.map((data, index) => (
+                                //console.log("DATA :",data.categories, data.food_id)
+                                data.categories === categori ?
+                                <CardMenu key={index} price={data.price} title={data.title} image={data.img}/>
                                 :
                                 ''
                             ))
-                        } */}
+                        }
                     </div>
                     :
-                    <>
-                        {/* { 
+                    <div className="wraper-menu">
+                        { 
                             fakeMenu.map((fakeMenu, index) => (
-                                <CardMenu key={index} price={fakeMenu.price} title={fakeMenu.title} image={fakeMenu.img}/>
+                                <CardMenu key={index} price={fakeMenu.price} title={fakeMenu.title} image={fakeMenu.img} />
                             ))
-                        } */}
-                    </>
+                        }
+                    </div>
                 
                 }
                 <Fab className="fab" color="primary" aria-label="add">
-                    <Badge badgeContent={4} color="error">
+                    <Badge badgeContent={state.orderData.totalOrder} color="error">
                         <ShoppingCartIcon />
                     </Badge>
                 </Fab>
@@ -170,5 +179,8 @@ const Menu = () => {
         
     )
 }
+
+
+
 
 export default Menu
