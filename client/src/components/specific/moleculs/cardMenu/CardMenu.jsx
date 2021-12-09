@@ -1,15 +1,20 @@
 import { ButtonBase } from '@material-ui/core'
 import React from 'react'
 import NumberFormat from 'react-number-format'
-import {  useSelector } from 'react-redux'
+// import {  useDispatch } from 'react-redux'
+// import { bindActionCreators } from 'redux'
+// import * as actionCreator from '../../../../redux'
 //import { foodimg} from '../../../../assets'
 import './cardMenu.scss'
 
 
-const CardMenu = ({title, image, price, click}) => {
-    const state = useSelector((state) => state)
+const CardMenu = ({title, image, price, id, click}) => {
+    //const state = useSelector((state) => state)
     //const additem = useDispatch({type: 'PLUS_CART'})
     //console.log(state)
+
+    //const dispatch = useDispatch()
+    //const { counterPlus, counterMin} = bindActionCreators(actionCreator, dispatch);
     
 
     return (
@@ -27,7 +32,7 @@ const CardMenu = ({title, image, price, click}) => {
                     thousandSeparator={true}
                     prefix="Rp "
                 />
-                <ButtonBase className="checkout" onClick={click} >add item</ButtonBase> 
+                <ButtonBase className="checkout" onClick={ click} >add item</ButtonBase> 
             </div>
             : ''}
         </div>
