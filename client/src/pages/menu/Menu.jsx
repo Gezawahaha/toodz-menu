@@ -15,7 +15,6 @@ export const Menu = () =>{
     //const isLoading = false;
     const fakeMenu = useSelector(selectRestoMenu);
     const dispatch = useDispatch();
-    //console.log(dispatch(addItem({food_id: 1})));
     
 
     const [categori, setCategori] = useState('all');
@@ -23,11 +22,7 @@ export const Menu = () =>{
         //console.log('data categor', e.target.value);
         setCategori(e.target.value)
     };
-    //const state = useSelector((state) => state)
-
-
-    //console.log("action",AC);
-    //console.log(state.orderData.totalOrder);
+   
     
     
     return (
@@ -92,7 +87,8 @@ export const Menu = () =>{
                                     image={data.img} 
                                     click={(e)=>{
                                         e.preventDefault();
-                                        dispatch(addItem({food_id: data.food_id}));
+                                        dispatch(addItem({food_id: data.food_id, price: data.price}));
+                                        
                                         //console.log(dispatch(addItem()))
                                     }}
                                     />

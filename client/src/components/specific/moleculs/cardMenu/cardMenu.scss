@@ -31,6 +31,20 @@
             //background-color: royalblue;
         }
     }
+    .title-menu{
+        white-space: nowrap; 
+        width: 148px;
+        height: 20px;
+        margin-top: 10px;
+        padding-top: 10px; 
+        overflow: hidden;
+        //background-color: red;
+        text-align: center;
+        //display: flex;
+        align-items: center;
+        text-overflow: ellipsis; 
+  //border: 1px solid #000000;
+    }
     p{
         //background-color: saddlebrown;
     }

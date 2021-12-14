@@ -1,4 +1,62 @@
 div{
+    .papper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: auto;
+        max-width: 100%;
+        //min-width: 320px;
+        //border: 2px solid #000;
+        //background-color: rgb(240, 10, 10);
+        box-shadow: black ;
+        padding: 10px;
+
+        .detail-cart{
+            display: flex;
+            margin: 1px;
+            width: 307px;
+            align-items: center;
+            justify-content: flex-start;
+            //background-color: grey;
+            .product{
+                flex-grow: 1;
+            }
+            .title-product{
+                font-size: 12px;
+                display: flex;
+                max-width: 100px;
+                //background-color: blueviolet;
+                flex-grow: 9;
+            
+            }
+            .qty-custom{
+                //background-color: blue;
+                width: 10px;
+                
+                //margin-right: 9px;
+                padding-right: 10px;
+                flex-grow: 11;
+                Button{
+                    font-size: bold;
+                }
+            }
+        }
+        .detail-checkout{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            //background-color: red;
+            .from-input{
+                width: 81%;
+                height: 50px;
+                margin-bottom: 10px;
+            }
+        }
+     
+    }
     .fab{
         margin: 0px;
         top: auto;
