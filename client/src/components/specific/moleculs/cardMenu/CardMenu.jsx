@@ -8,7 +8,7 @@ import NumberFormat from 'react-number-format'
 import './cardMenu.scss'
 
 
-const CardMenu = ({title, image, price, id, click}) => {
+const CardMenu = ({title, image, price, id, click, home}) => {
     //const state = useSelector((state) => state)
     //const additem = useDispatch({type: 'PLUS_CART'})
     //console.log(state)
@@ -23,7 +23,9 @@ const CardMenu = ({title, image, price, id, click}) => {
                 <img className="img-cardmenu" src={image} alt="foodimg"/>
             </div>
             <p className="title-menu">{title}</p>
-            {price ? 
+            {home ? 
+            ''
+            : 
             <div className="price-checkout">
                 <NumberFormat 
                     className="price"
@@ -33,8 +35,7 @@ const CardMenu = ({title, image, price, id, click}) => {
                     prefix="Rp "
                 />
                 <ButtonBase className="checkout" onClick={ click} >add item</ButtonBase> 
-            </div>
-            : ''}
+            </div>}
         </div>
     )
 }

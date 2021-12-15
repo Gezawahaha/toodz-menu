@@ -65,20 +65,48 @@ router.get("/:id", verify, async (req,res)=>{
 });
 
 //GET ALL
-router.get("/", verify, async (req,res)=>{
-    const query = req.query.new;
-
-    if(req.user.role ){
+router.get("/", async (req,res)=>{
+    const categorie = req.query.categorie;
+    let menu;
         try {
-            const menu = query ? await Menu.find().limit(10) : await Menu.find();
+            if( categorie === "To Share"){
+                menu = await Menu.aggregate([
+                    { $match: { categories: "To Share"}}
+                ]);
+            }else if (categorie === "Salad"){
+                menu = await Menu.aggregate([
+                    { $match: { categories: "Salad"}}
+                ]);
+            }else if (categorie === "Food"){
+                menu = await Menu.aggregate([
+                    { $match: { categories: "Food"}}
+                ]);
+            }else if(categorie === "Soup"){
+                menu = await Menu.aggregate([
+                    { $match: { categories: "Soup"}}
+                ]);
+            }else if(categorie === "Kids Meal"){
+                menu = await Menu.aggregate([
+                    { $match: { categories: "Kids Meal"}}
+                ]);
+            }else if(categorie === "Sides"){
+                menu = await Menu.aggregate([
+                    { $match: { categories: "Sides"}}
+                ]);
+            }else if(categorie === "Dessert"){
+                menu = await Menu.aggregate([
+                    { $match: { categories: "Dessert"}}
+                ]);
+            }else if(categorie === "All"){
+                menu = await Menu.find();
+            }
             res.status(200).json(menu);
+            // const menu = query ? await Menu.find().limit(10) : await Menu.find();
+            // res.status(200).json(menu);
             
         } catch (err) {
             res.status(500).json(err)
         }
-    } else {
-        res.status(403).json("You are not allow to see users")
-    }
 });
 
 //GET Random / Specific

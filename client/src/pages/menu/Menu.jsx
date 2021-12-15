@@ -83,11 +83,11 @@ export const Menu = () =>{
                                 <CardMenu 
                                     key={index} 
                                     price={data.price} 
-                                    title={data.title} 
-                                    image={data.img} 
+                                    title={data.menutitle} 
+                                    image={data.pic} 
                                     click={(e)=>{
                                         e.preventDefault();
-                                        dispatch(addItem({food_id: data.food_id, price: data.price}));
+                                        dispatch(addItem({food_id: data._id, price: data.price}));
                                         
                                         //console.log(dispatch(addItem()))
                                     }}

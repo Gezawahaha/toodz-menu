@@ -15,6 +15,7 @@ const MenuSchema = new mongoose.Schema({
     saltinessScore: {type: Number, default: 0},
     sweetnessScore: {type: Number, default: 0},
     calorieScore: {type: Number, default: 0},
+    sourScore: {type: Number, default: 0},
     },{timestamps: true }
 );
 

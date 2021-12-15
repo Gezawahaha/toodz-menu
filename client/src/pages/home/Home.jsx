@@ -5,18 +5,29 @@ import { ambianceimg, ambianceimg2, ambianceimg3, logoRekomendasi, reviewapp } f
 import {  CardMenu, CardRekomU } from '../../components/specific'
 import { Fade } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
+import {  useSelector } from 'react-redux'
+import { selectRestoMenu} from '../../redux/restoSlice'
+
+
+
+
 
 
 const Home = () => {
+    const fakeMenu= useSelector(selectRestoMenu);
+    const imgAmbiance = [ambianceimg, ambianceimg2, ambianceimg3];
+    
+    // const fakeMenu = [
+    //     { "title": "Sate Padang", "img": "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" },
+    //     { "title": "Nasi Kuning Sekut", "img": "https://cdnt.orami.co.id/unsafe/cdn-cas.orami.co.id/parenting/images/makanan-khas-nusantara.width-800.jpegquality-80.jpg" },
+    //     { "title": "Indomie Mantab", "img": "https://awsimages.detik.net.id/community/media/visual/2021/04/22/5-makanan-enak-dari-indonesia-dan-malaysia-yang-terkenal-enak-5.jpeg" },
+    //     { "title": "Martabokk", "img": "https://ik.imagekit.io/tvlk/blog/2020/01/81253141_133608488117799_3264343446726517802_n.jpg"},
+    //     ];
 
-    const imgAmbiance = [ambianceimg, ambianceimg2, ambianceimg3]
-    const fakeMenu = [
-        { "title": "Sate Padang", "img": "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" },
-        { "title": "Nasi Kuning Sekut", "img": "https://cdnt.orami.co.id/unsafe/cdn-cas.orami.co.id/parenting/images/makanan-khas-nusantara.width-800.jpegquality-80.jpg" },
-        { "title": "Indomie Mantab", "img": "https://awsimages.detik.net.id/community/media/visual/2021/04/22/5-makanan-enak-dari-indonesia-dan-malaysia-yang-terkenal-enak-5.jpeg" },
-        { "title": "Martabokk", "img": "https://ik.imagekit.io/tvlk/blog/2020/01/81253141_133608488117799_3264343446726517802_n.jpg"},
-        ];
-
+    
+    
+    
+    console.log(fakeMenu);
     return (
         <div className="home">
             
@@ -35,7 +46,7 @@ const Home = () => {
                         <div className="conten2-img">
                             {
                                 fakeMenu.map((fakeMenu, index) => (
-                                    <CardMenu key={index} price={fakeMenu.price} title={fakeMenu.title} image={fakeMenu.img}/>
+                                    <CardMenu key={index} price={fakeMenu.price} title={fakeMenu.menutitle} image={fakeMenu.pic} home={true} />
                                 ))
                             }
                         </div>

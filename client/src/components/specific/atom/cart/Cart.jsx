@@ -10,6 +10,7 @@ import { addItem, addTableid, removeItem, selectCartCount, selectCartItem, selec
 import { selectRestoMenu } from '../../../../redux/restoSlice'
 import { CardMenuMini } from '../..';
 import { Button, ButtonGroup, Dialog, FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 
@@ -21,6 +22,7 @@ const Cart = () => {
   const table_id = useSelector(selectTableid);
 
   const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(false);
 
   const [open, setOpen] = useState(false);
   const [checkOut, setCheckOut] = useState({
@@ -44,8 +46,9 @@ const Cart = () => {
   };
 
   const handleClickSubmit = () =>{
+    setLoading(true);
     setCheckOut({...checkOut, order: Object.values(items), totalOrder: totalOrder, qtyItem: count});
-    setTimeout(() =>{console.log(checkOut)},2000)
+    setTimeout(() =>{setLoading(false);console.log(checkOut);},5000)
   };
 
   const body = (
@@ -58,17 +61,17 @@ const Cart = () => {
                 
                 <div className="detail-cart" key={index}>
                     <div className="product">
-                          <CardMenuMini image={menu.find(x => x.food_id === data.food_id).img}/>
+                          <CardMenuMini image={menu.find(x => x._id === data.food_id).pic}/>
                     </div>
                     <div className="title-product">
-                        <p>{menu.find(x => x.food_id === data.food_id).title}</p>
+                        <p>{menu.find(x => x._id === data.food_id).title}</p>
                     </div>
                     <div className="qty-custom">
                     <ButtonGroup size="small" aria-label="small outlined button group">
 
                     <Button onClick={(e) => {
                        e.preventDefault();
-                       dispatch(removeItem({food_id: data.food_id, price: menu.find(x => x.food_id === data.food_id).price}));
+                       dispatch(removeItem({food_id: data.food_id, price: menu.find(x => x._id === data.food_id).price}));
                        setCheckOut({...checkOut, order: Object.values(items), totalOrder: totalOrder, qtyItem: count});
                       }}>-</Button>
 
@@ -76,7 +79,7 @@ const Cart = () => {
 
                       <Button onClick={(e)=> {
                         e.preventDefault();
-                        dispatch(addItem({food_id: data.food_id, price: menu.find(x => x.food_id === data.food_id).price}));
+                        dispatch(addItem({food_id: data.food_id, price: menu.find(x => x._id === data.food_id).price}));
                         setCheckOut({...checkOut, order: Object.values(items), totalOrder: totalOrder, qtyItem: count});
                       }}>+</Button>
 
@@ -157,7 +160,7 @@ const Cart = () => {
                         </FormControl>
                     </div>
       <div className="detail-cart">
-        <Button fullWidth={true} color="primary" variant="contained" onClick={handleClickSubmit}>checkout</Button>  
+        <Button fullWidth={true} color="primary" variant="contained" onClick={handleClickSubmit}>{isLoading ?<CircularProgress size={25}/> : 'checkout'}</Button>  
       </div>
       <Cart />
     </div>
@@ -166,12 +169,13 @@ const Cart = () => {
     
     //setTimeout(() =>{console.log(checOut)},2000)
     return (
-        <div>
-            <Fab className={ count !== 0 ? "fab" : undefined } color="primary" aria-label="add" onClick={handleOpen}>
+        <div>{ count !== 0 ? 
+            <Fab className="fab"  color="primary" aria-label="add" onClick={handleOpen}>
                 <Badge badgeContent={count} color="error">
                     <ShoppingCartIcon />
                 </Badge>
             </Fab>
+            : ''}
             {/* <Modal
                 open={open}
                 onClose={handleClose}
