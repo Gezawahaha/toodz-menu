@@ -1,0 +1,112 @@
+.cardmenulg{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    .btn-back{
+        color: black;
+        display: flex;
+        width: 50%;
+        align-items: center;
+        .back{
+            width: 50px;
+            height: 5vh;
+            display: flex;
+            flex-direction: row;
+        }
+            h1{
+                text-decoration: none;
+                
+            }
+        
+    }
+
+.container-cardmenuLG{
+    //background-color: Red;
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    flex-direction: Row;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: 1px;
+    //width: 90px;
+    .img-cover{
+        position: relative;
+        flex-wrap: wrap;
+        width: 260px;
+        height: 260px;
+        background: url('../../../../assets/svg/menucard.svg') no-repeat;
+        background-size: 260px 260px;
+        margin-top: 20px;
+        margin-left: 13px;
+        margin-right: 13px;
+        margin-bottom: 1px;
+        //background-color: red;
+        .img-cardmenu{
+            position: absolute;
+            object-fit: cover;
+            width: 248px;
+            height: 248px;
+            top: 8px;
+            left: 5px;
+            border-radius: 55px 30px 50px 50px;
+            //background-color: royalblue;
+        }
+    }
+    .title-menu{
+        max-width: 408px;
+        height: 20px;
+        margin-top: 10px;
+        padding-top: 10px; 
+        font-size: 38px;
+        //background-color: red;
+        text-align: start;
+        //display: flex;
+        align-items: center;
+  //border: 1px solid #000000;
+    }
+    p{
+        max-width: 400px;
+    }
+    .price-checkout{
+        display: flex;
+        flex-direction: column;
+        line-height: normal;
+        justify-content: flex-start;
+        //background-color: royalblue;
+        
+        .price{
+            display: flex;
+            justify-content: flex-start;
+            bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: start;
+            margin-right: 15px;
+            margin: auto;
+            padding: 5px;
+            
+        }
+
+        .checkout{
+            height: fit-content;
+            margin: auto;
+            padding: 7px;
+            font-size: 14px;
+            border-left: 6px solid #CDD4B6;
+            background-color: lightgrey;
+            border-radius: 10px;
+            cursor: pointer;
+
+            &:hover{
+                transition: all .3s;
+                border-left: 6px solid #3d4b42;
+                font-weight: 500;
+            }
+        }
+    }
+}
+}

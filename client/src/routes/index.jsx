@@ -6,6 +6,7 @@ import AboutUs from '../pages/aboutUs/AboutUs'
 import Admin from '../pages/admin/Admin'
 import Home from '../pages/home/Home'
 import Menu from '../pages/menu/Menu'
+import MenuDetail from '../pages/menuDetail/MenuDetail'
 import Rekomendasi from '../pages/rekomendasi/Rekomendasi'
 
 
@@ -20,6 +21,9 @@ const Routes = () => {
                 <Route path={'/menu'}>
                     <Menu />
                 </Route>
+                <Route path={'/menudetail/:id'}>
+                        <MenuDetail />
+                    </Route>
                 <Route path={'/rekomendasi'}>
                     <Rekomendasi />
                 </Route>

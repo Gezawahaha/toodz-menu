@@ -7,8 +7,8 @@ export const restoSlice = createSlice({
     initialState: {
         name: "",
         menu: [
-            // {   title: "Sate Padang", price: 20000, food_id: 1, categories: "Food", img: "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" },
-            // {   title: "Nasi Kuning Sekut Banget Deh Pokok Nya", price: 20000, food_id: 2, categories: "Food", img: "https://cdnt.orami.co.id/unsafe/cdn-cas.orami.co.id/parenting/images/makanan-khas-nusantara.width-800.jpegquality-80.jpg" },
+            {   title: "Sate Padang", price: 20000, food_id: 1, categories: "Food", img: "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" },
+            {   title: "Nasi Kuning Sekut Banget Deh Pokok Nya", price: 20000, food_id: 2, categories: "Food", img: "https://cdnt.orami.co.id/unsafe/cdn-cas.orami.co.id/parenting/images/makanan-khas-nusantara.width-800.jpegquality-80.jpg" },
             // {   title: "Indomie Mantab", price: 20000, food_id: 3, categories: "Sides", img: "https://awsimages.detik.net.id/community/media/visual/2021/04/22/5-makanan-enak-dari-indonesia-dan-malaysia-yang-terkenal-enak-5.jpeg" },
             // {   title: "Martabokk", price: 20000, food_id: 4, categories: "Dessert", img: "https://ik.imagekit.io/tvlk/blog/2020/01/81253141_133608488117799_3264343446726517802_n.jpg"},
             // {   title: "Sosise", price: 20000, food_id: 5, categories: "Sides", img: "https://foto.kontan.co.id/mLO3JF3kQK6EIfFz7rSx41eAtHA=/smart/2020/12/24/162674279p.jpg"},

@@ -4,30 +4,29 @@ const verify = require("../verifyToken");
 
 
 //CREATE
-router.post("/add", verify, async (req,res)=>{
-    if(req.user.id === req.params.id || req.user.role ){
-        const newMenu = new Menu(req.body);
-
-
-        try {
-            const savedMenu = await newMenu.save();
-            res.status(200).json(savedMenu);
-        } catch (err) {
-            res.status(500).json(err)
-        }
+router.post("/add", verify, async (req, res) => {
+    if (req.user.role) {
+      const newMenu = new Menu(req.body);
+      
+      try {
+        const savedMenu = await newMenu.save();
+        res.status(201).json(savedMenu);
+      } catch (err) {
+        res.status(500).json(err);
+      }
     } else {
-        res.status(403).json("You are not allow add menu!")
+      res.status(403).json("You are not allowed!");
     }
-});
+  });
 
 //UPDATE
-router.put("/:id", verify, async (req,res)=>{
+router.put("/:id",  async (req,res)=>{
     if(req.user.role ){
         try {
             const updateMenu = await Menu.findById(
                 req.params.id, 
                 {
-                    $set: req.params.body,
+                    $set: req.body,
                 },
                 {new:true}
                 );
@@ -67,6 +66,7 @@ router.get("/:id", verify, async (req,res)=>{
 //GET ALL
 router.get("/", async (req,res)=>{
     const categorie = req.query.categorie;
+    
     let menu;
         try {
             if( categorie === "To Share"){
@@ -97,7 +97,7 @@ router.get("/", async (req,res)=>{
                 menu = await Menu.aggregate([
                     { $match: { categories: "Dessert"}}
                 ]);
-            }else if(categorie === "All"){
+            }else {
                 menu = await Menu.find();
             }
             res.status(200).json(menu);

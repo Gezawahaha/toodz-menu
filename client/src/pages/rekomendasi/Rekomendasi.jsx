@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -7,13 +7,17 @@ import Button from '@material-ui/core/Button'
 import './rekomendasi.scss'
 import { CardMenu } from '../../components/specific'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { useSelector } from 'react-redux'
+import { selectRestoMenu } from '../../redux/restoSlice'
 
-const fakeMenu = [
-    { "title": "Sate Padang","price": "20000", "img": "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" },
-    { "title": "Nasi Kuning Sekut","price": "20000", "img": "https://cdnt.orami.co.id/unsafe/cdn-cas.orami.co.id/parenting/images/makanan-khas-nusantara.width-800.jpegquality-80.jpg" },
-    { "title": "Indomie Mantab", "price": "20000","img": "https://awsimages.detik.net.id/community/media/visual/2021/04/22/5-makanan-enak-dari-indonesia-dan-malaysia-yang-terkenal-enak-5.jpeg" },
-    { "title": "Martabokk", "price": "20000","img": "https://ik.imagekit.io/tvlk/blog/2020/01/81253141_133608488117799_3264343446726517802_n.jpg"},
-];
+const _ = require('lodash');
+
+// const fakeMenu = [
+//     { "title": "Sate Padang","price": "10000", "img": "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" },
+//     { "title": "Nasi Kuning Sekut","price": "20000", "img": "https://cdnt.orami.co.id/unsafe/cdn-cas.orami.co.id/parenting/images/makanan-khas-nusantara.width-800.jpegquality-80.jpg" },
+//     { "title": "Indomie Mantab", "price": "30000","img": "https://awsimages.detik.net.id/community/media/visual/2021/04/22/5-makanan-enak-dari-indonesia-dan-malaysia-yang-terkenal-enak-5.jpeg" },
+//     { "title": "Martabokk", "price": "40000","img": "https://ik.imagekit.io/tvlk/blog/2020/01/81253141_133608488117799_3264343446726517802_n.jpg"},
+// ];
 
 const Rekomendasi = () => {
     //NILAI INPUT
@@ -35,34 +39,78 @@ const Rekomendasi = () => {
         saltinessScore: 0,
         sweetnessScore: 0,
         calorieScore: 0,
-        sourScore: 0
-    })
+        sourScore: 0,
 
+        priceMin: 0,
+        spicinessMax: 0,
+        saltinessMax: 0,
+        sweetnessMax: 0,
+        calorieMax: 0,
+        sourMax: 0,
+    });
     const [resultData, setResult] = useState([]);
     const [resultCondition, setCondition] = useState(false)
     const [isLoading, setLoading] = useState(false);
+    const fakeMenu = useSelector(selectRestoMenu);
 
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
-        setResult(fakeMenu); //masukan data result kesini
-        setCondition(true);
-        setLoading(true);
-        setKepentingaState({
-            priceScore: state.priceScore/state.totalScore,
-            spicinessScore: state.spicinessScore/state.totalScore,
-            saltinessScore: state.saltinessScore/state.totalScore,
-            sweetnessScore: state.sweetnessScore/state.totalScore,
-            calorieScore: state.calorieScore/state.totalScore,
-            sourScore: state.sourScore/state.totalScore
+    
+    
+
+    function getMinMax(value) {
+        const priceMin = _.minBy(value, 'priceScore');
+        const spicinessMax = _.maxBy(value, 'spicinessScore');
+        const saltinessMax = _.maxBy(value, 'saltinessScore');
+        const sweetnessMax = _.maxBy(value, 'sweetnessScore');
+        const calorieMax = _.maxBy(value, 'calorieScore');
+        const sourMax = _.maxBy(value, 'sourScore');
+        return {
+            priceScoreMin: priceMin.priceScore,
+            spicinessScoreMax: spicinessMax.spicinessScore,
+            saltinessScoreMax: saltinessMax.saltinessScore,
+            sweetnessScoreMax: sweetnessMax.sweetnessScore,
+            calorieScoreMax: calorieMax.calorieScore,
+            sourScoreMax: sourMax.sourScore,
+        }
+    }
+    
+    function rekNormalisai(data){
+        //console.log(kepentingState.sourScore)
+        const getNilaiBobot = data;
+        const maxmin = getMinMax(getNilaiBobot);
+        const rekomNormalisasi = data.map(function(testRek){
+            return {
+                ...testRek,
+                FinalScore: ((maxmin.priceScoreMin/testRek.priceScore)* kepentingState.priceScore) +
+                            ((testRek.spicinessScore/ maxmin.spicinessScoreMax)* kepentingState.spicinessScore) +
+                            ((testRek.saltinessScore/ maxmin.saltinessScoreMax)* kepentingState.saltinessScore) +
+                            ((testRek.sweetnessScore/ maxmin.sweetnessScoreMax)* kepentingState.sweetnessScore) +
+                            ((testRek.calorieScore/ maxmin.calorieScoreMax)* kepentingState.calorieScore) +
+                            ((testRek.sourScore/ maxmin.sourScoreMax)* kepentingState.sourScore) 
+            }
         })
+        return rekomNormalisasi
+    }
+   
+    const handleSubmitClick = (e) => {
+        e.preventDefault();//masukan data result kesini
+        
+        setLoading(true);
+        setResult(rekNormalisai(fakeMenu));
+        if( state.priceScore === ''  || state.spicinessScore === '' || state.saltinessScore === '' || state.sweetnessScore === '' || state.calorieScore === '' || state.sourScore === ''){
+            setCondition(false);
+        }else{
+            setCondition(true);
+        }
         setTimeout(() =>{setLoading(false)},3000);
-        console.log("sebelum: ",state,"sesudah: ",kepentingState);
     };
 
     
+    
 
     const handleChange = (e ) => {
-        //e.preventDefault();
+        
+        e.preventDefault();
+        //setRekom(fakeMenu)
         const {name , value} = e.target 
         //console.log(e.target);  
         if (name !== "categories") {
@@ -78,7 +126,29 @@ const Rekomendasi = () => {
                 [name] : value,
             }));
         }
+        setKepentingaState({
+            priceScore: state.priceScore/state.totalScore,
+            spicinessScore: state.spicinessScore/state.totalScore,
+            saltinessScore: state.saltinessScore/state.totalScore,
+            sweetnessScore: state.sweetnessScore/state.totalScore,
+            calorieScore: state.calorieScore/state.totalScore,
+            sourScore: state.sourScore/state.totalScore,
+
+            priceMin: Math.min.apply(Math, fakeMenu.map(x => x.priceScore)),
+            spicinessMax: Math.max.apply(Math, fakeMenu.map(x => x.spicinessScore)),
+            saltinessMax: Math.max.apply(Math, fakeMenu.map(x => x.saltinessScore)),
+            sweetnessMax: Math.max.apply(Math, fakeMenu.map(x => x.sweetnessScore)),
+            calorieMax: Math.max.apply(Math, fakeMenu.map(x => x.calorieScore)),
+            sourMax: Math.max.apply(Math, fakeMenu.map(x => x.sourScore)),
+        })
+
     };
+
+    const sorted = resultData.sort((a, b)=>{
+        return b.FinalScore - a.FinalScore 
+    })
+
+    
 
     return (
         <div className="rekom-wraper">
@@ -100,15 +170,15 @@ const Rekomendasi = () => {
                             value={state.priceScore}
                             >
                             
-                            <MenuItem value={1}>1-2</MenuItem>
-                            <MenuItem value={2}>2-3</MenuItem>
-                            <MenuItem value={3}>3</MenuItem>
-                            <MenuItem value={4}>3-4</MenuItem>
-                            <MenuItem value={5}>4-5</MenuItem>
+                            <MenuItem value={1}> {'< 10,000'} </MenuItem>
+                            <MenuItem value={2}>{'10,000 - 21,250'}</MenuItem>
+                            <MenuItem value={3}>{'21,250 - 32,500'}</MenuItem>
+                            <MenuItem value={4}>{'32,500 - 43,750'}</MenuItem>
+                            <MenuItem value={5}>{'> 43,750 '}</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
-                    <div className="quest">
+                    {/* <div className="quest">
                         <InputLabel className="from-title">Categories</InputLabel>
                         <FormControl className="from-input">
                             <InputLabel id="categories">Please enter categories</InputLabel>
@@ -127,7 +197,7 @@ const Rekomendasi = () => {
                             <MenuItem value={'Dessert'}>Dessert</MenuItem>
                             </Select>
                         </FormControl>
-                    </div>
+                    </div> */}
                     <div className="quest">
                         <InputLabel className="from-title">Spiciness Level</InputLabel>
                         <FormControl className="from-input">
@@ -232,7 +302,7 @@ const Rekomendasi = () => {
                             ''
                         }
                         {
-                            resultCondition  ?
+                            resultCondition ?
                             <div className="result">
                                 {
                                     isLoading ?
@@ -240,9 +310,12 @@ const Rekomendasi = () => {
                                     :
                                     <div className="result">
                                         { 
-                                            resultData.map((fakeMenu, index) => (
-                                                <CardMenu key={index} price={fakeMenu.price} title={fakeMenu.title} image={fakeMenu.img}/>
+                                            sorted.map((result, index) => ( index >= 9 ?
+                                                '' : (<CardMenu key={index} price={result.price} title={result.menutitle} image={result.pic} rank={index+1} data={result._id} />)
                                             ))
+                                                
+                                                
+                                            
                                         }
                                     </div>
                                 }

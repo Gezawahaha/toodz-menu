@@ -60,7 +60,7 @@ export const Menu = () =>{
                 {   categori !== 'all'
                     ?
                     <div className="wraper-menu" >
-                        {/* {console.log("DATA :",fakeMenu[1].categories, "categori :" , categori)} */}
+                        
                         { 
                             fakeMenu.map((data, index) => (
                                 //console.log("DATA :",data.categories, data.food_id)
@@ -68,8 +68,15 @@ export const Menu = () =>{
                                 <CardMenu 
                                     key={index} 
                                     price={data.price} 
-                                    title={data.title} 
-                                    image={data.img}/>
+                                    title={data.menutitle} 
+                                    image={data.pic} 
+                                    click={(e)=>{
+                                        e.preventDefault();
+                                        dispatch(addItem({food_id: data._id, price: data.price}));
+                                        
+                                        //console.log(dispatch(addItem()))
+                                    }}
+                                    />
                                 :
                                 ''
                             ))
@@ -81,7 +88,10 @@ export const Menu = () =>{
                             fakeMenu.map((data, index) => (
                             
                                 <CardMenu 
-                                    key={index} 
+                                    key={index}
+                                    id={data._id}
+                                    data={data}
+                                    from={"menu"} 
                                     price={data.price} 
                                     title={data.menutitle} 
                                     image={data.pic} 

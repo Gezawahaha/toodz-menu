@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 
 const MenuSchema = new mongoose.Schema({
-    menutitle: {type:String, required:true, unique:true},
+    menutitle: {type:String, required:true},
     categories: {type:String, required:true},
     price: {type: Number, default: 0},
-    desc: {type:String, required:true},
+    desc: {type:String, default:""},
     stock: {type:Boolean, default: false},
     qty: {type: Number, default: 0},
     pic: {type:String, default: ""},
