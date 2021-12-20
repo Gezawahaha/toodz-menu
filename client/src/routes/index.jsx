@@ -21,7 +21,7 @@ const Routes = () => {
                 <Route path={'/menu'}>
                     <Menu />
                 </Route>
-                <Route path={'/menudetail/:id'}>
+                <Route path={'/menudetail/'}>
                         <MenuDetail />
                     </Route>
                 <Route path={'/rekomendasi'}>

@@ -1,5 +1,5 @@
 //import { ButtonBase } from '@material-ui/core'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import NumberFormat from 'react-number-format'
 import { Link, Redirect, useLocation } from 'react-router-dom'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -18,18 +18,16 @@ const CardMenuLg = ({title="Menu Makanan Edan", image, from,price='30000', data,
     //const dispatch = useDispatch()
     //const { counterPlus, counterMin} = bindActionCreators(actionCreator, dispatch);
     const location = useLocation();
-    const [menu, setMenu] = useState(location.menu);
-    console.log(menu);
+    const menu = location.menu
 
-//     useEffect(() => {
-//          if(menu === undefined ){
-// <Redirect push to="/menu" />
-//          }
-//     }, [])
+    
     return (
-
+        
         <div className="cardmenulg">
-            <Link to={`/${from}`} className="btn-back" style={{textDecoration: 'none', color: 'black'}}>
+            { menu === undefined ? 
+            (<Redirect push to="/menu" />)
+            : <div className="cardmenulg">
+                <Link to={`/${location.from}`} className="btn-back" style={{textDecoration: 'none', color: 'black'}}>
                 
                 <ArrowBackIcon className="back"/>
                 <span>
@@ -50,10 +48,10 @@ const CardMenuLg = ({title="Menu Makanan Edan", image, from,price='30000', data,
             : 
             <div className="price-checkout">
                 <h3 className="title-menu">{menu.menutitle}</h3>
-                <p >{desc}</p>
+                <p >{menu.desc}</p>
                 <NumberFormat 
                     className="price"
-                    value={price}
+                    value={menu.price}
                     displayType="text"
                     thousandSeparator={true}
                     prefix="Rp "
@@ -61,6 +59,8 @@ const CardMenuLg = ({title="Menu Makanan Edan", image, from,price='30000', data,
                 {/* <ButtonBase className="checkout" onClick={ click} >add item</ButtonBase>  */}
             </div>}
         </div>
+            </div> }
+            
         </div>
     )
 }

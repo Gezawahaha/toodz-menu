@@ -1,4 +1,4 @@
-import { ButtonBase } from '@material-ui/core'
+//import { ButtonBase } from '@material-ui/core'
 import React from 'react'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
@@ -21,7 +21,7 @@ const CardMenu = ({title, image, price, data, id, click, home, rank , from}) => 
     return (
         <div className="container-cardmenu">
             { rank ? <p>{rank}</p>:''}
-            <Link to={{pathname:"/menudetail/" +id, menu: data, from: from}}>
+            <Link to={{pathname:"/menudetail/", menu: data, from: from}}>
                 <div className="img-cover" >
                     <img className="img-cardmenu" src={image} alt="foodimg"/>
                 </div>
@@ -39,7 +39,7 @@ const CardMenu = ({title, image, price, data, id, click, home, rank , from}) => 
                     thousandSeparator={true}
                     prefix="Rp "
                 />
-                <ButtonBase className="checkout" onClick={ click} >add item</ButtonBase> 
+                {/* <ButtonBase className="checkout" onClick={ click} >add item</ButtonBase>  */}
             </div>}
         </div>
     )
