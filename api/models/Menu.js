@@ -7,7 +7,7 @@ const MenuSchema = new mongoose.Schema({
     desc: {type:String, default:""},
     stock: {type:Boolean, default: false},
     qty: {type: Number, default: 0},
-    pic: {type:String, default: ""},
+    pic: {type:String, default: "https://firebasestorage.googleapis.com/v0/b/toodzhouse-6abde.appspot.com/o/items%2Fdefaultimg.png?alt=media&token=fe5cfc46-a6ba-422f-ac8d-5cd46c10c8eb"},
 
     //SAW DATA
     priceScore: {type: Number, default: 0},

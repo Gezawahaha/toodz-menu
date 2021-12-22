@@ -184,11 +184,12 @@ export default function NewProduct() {
         </div> 
         {
           uplouded === 1 ? (
-            <button className="addProductButton" onClick={handleSubmit}>Create</button>
+            <button className="addProductButton" disabled >Upload Done!</button>
           ) : (
             <button className="addProductButton" onClick={handleUpload}>Upload</button>
           )
         }
+        <button className="addProductButton" onClick={handleSubmit}>Create</button>
       </form>
     </div>
   );
