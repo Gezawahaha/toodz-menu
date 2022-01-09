@@ -20,7 +20,7 @@ const App = () => {
             }
         };
         getAllMenu();
-    }, [dispatch]);
+    }, [dispatch,axioxInstance]);
 
 
     return (

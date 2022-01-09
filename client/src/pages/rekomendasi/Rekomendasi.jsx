@@ -7,8 +7,8 @@ import Button from '@material-ui/core/Button'
 import './rekomendasi.scss'
 import { CardMenu } from '../../components/specific'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { useSelector } from 'react-redux'
-import { selectRestoMenu } from '../../redux/restoSlice'
+// import { useSelector } from 'react-redux'
+// import { selectRestoMenu } from '../../redux/restoSlice'
 
 const _ = require('lodash');
 
@@ -20,6 +20,7 @@ const _ = require('lodash');
 // ];
 
 const Rekomendasi = () => {
+
     //NILAI INPUT
     const [state, setState] = useState({
         categories: '',
@@ -33,25 +34,106 @@ const Rekomendasi = () => {
 
     });
 
-    const [kepentingState, setKepentingaState]= useState({
-        priceScore: 0,
-        spicinessScore: 0,
-        saltinessScore: 0,
-        sweetnessScore: 0,
-        calorieScore: 0,
-        sourScore: 0,
-
-        priceMin: 0,
-        spicinessMax: 0,
-        saltinessMax: 0,
-        sweetnessMax: 0,
-        calorieMax: 0,
-        sourMax: 0,
-    });
     const [resultData, setResult] = useState([]);
     const [resultCondition, setCondition] = useState(false)
     const [isLoading, setLoading] = useState(false);
-    const fakeMenu = useSelector(selectRestoMenu);
+    const fakeMenu = [
+        {
+            "_id": "61bb61dfaeb09f2a52a5a8e5",
+            "menutitle": "Carbonara Platter",
+            "categories": "To Share",
+            "price": 55000,
+            "desc": "french fries, breaded mushroom, sausage, chicken fingers & wings",
+            "stock": true,
+            "qty": 0,
+            "pic": "https://firebasestorage.googleapis.com/v0/b/toodzhouse-6abde.appspot.com/o/items%2FTOODZ%20-%20To%20Share%20-%20Carbonara%20platter.jpg?alt=media&token=83b88ea0-0146-4cf8-bd5c-6f09d7f76af5",
+            "priceScore": 4,
+            "spicinessScore": 1,
+            "saltinessScore": 5,
+            "sweetnessScore": 1,
+            "calorieScore": 3,
+            "sourScore": 1,
+            "createdAt": "2021-12-16T15:57:19.172Z",
+            "updatedAt": "2021-12-16T15:57:19.172Z",
+            "__v": 0
+        },
+        {
+            "_id": "61bb6224aeb09f2a52a5a8e7",
+            "menutitle": "Veggie Carbonara Platter",
+            "categories": "To Share",
+            "price": 50000,
+            "desc": "french fries, parmesan crusted broccoli, breaded cauliflowers, breaded mushroom, breaded eggplant",
+            "stock": true,
+            "qty": 0,
+            "pic": "https://firebasestorage.googleapis.com/v0/b/toodzhouse-6abde.appspot.com/o/items%2FTOODZ%20-%20To%20Share%20-%20Veggie%20carbonara%20platter(1).jpg?alt=media&token=7a37947c-c103-40cb-be59-7011905f14be",
+            "priceScore": 4,
+            "spicinessScore": 1,
+            "saltinessScore": 5,
+            "sweetnessScore": 1,
+            "calorieScore": 3,
+            "sourScore": 1,
+            "createdAt": "2021-12-16T15:58:28.930Z",
+            "updatedAt": "2021-12-16T15:58:28.930Z",
+            "__v": 0
+        },
+        {
+            "_id": "61bb5d2aaeb09f2a52a5a8ce",
+            "menutitle": "Chicken Clear Soup",
+            "categories": "Soup",
+            "price": 33000,
+            "desc": "",
+            "stock": true,
+            "qty": 0,
+            "pic": "https://firebasestorage.googleapis.com/v0/b/toodzhouse-6abde.appspot.com/o/items%2FTOODZ%20-%20Mains%20-%20Chicken%20clear%20soup.jpg?alt=media&token=0b3efacc-d834-49c9-a755-3bfb8708b5a4",
+            "priceScore": 2,
+            "spicinessScore": 1,
+            "saltinessScore": 4,
+            "sweetnessScore": 1,
+            "calorieScore": 3,
+            "sourScore": 1,
+            "createdAt": "2021-12-16T15:37:14.939Z",
+            "updatedAt": "2021-12-16T15:37:14.939Z",
+            "__v": 0
+        },
+        {
+            "_id": "61bb64fdaeb09f2a52a5a8f0",
+            "menutitle": "Waffle with Toppings, Cereal and Cheese",
+            "categories": "Dessert",
+            "price": 35000,
+            "desc": "",
+            "stock": true,
+            "qty": 0,
+            "pic": "https://firebasestorage.googleapis.com/v0/b/toodzhouse-6abde.appspot.com/o/items%2FTOODZ%20-%20Sweets%20-%20Waffle%20with%20cereal%20and%20cheese.jpg?alt=media&token=59eea34f-e1e7-4376-969b-8c42973e2f09",
+            "priceScore": 3,
+            "spicinessScore": 1,
+            "saltinessScore": 2,
+            "sweetnessScore": 5,
+            "calorieScore": 3,
+            "sourScore": 1,
+            "createdAt": "2021-12-16T16:10:37.290Z",
+            "updatedAt": "2021-12-16T16:10:37.290Z",
+            "__v": 0
+        },
+        {
+            "_id": "61bb55d92ac3627f1628fc4d",
+            "menutitle": "Corned Rice with Sausage & Chicken Wing",
+            "categories": "Kids Meal",
+            "price": 38000,
+            "desc": "",
+            "stock": true,
+            "qty": 0,
+            "pic": "https://firebasestorage.googleapis.com/v0/b/toodzhouse-6abde.appspot.com/o/items%2FCorned%20Rice%20w_%20Sausage%20_%20Chicken%20Wing.jpg?alt=media&token=e5564cbf-2655-4546-8b32-8be89e5f81d5",
+            "priceScore": 3,
+            "spicinessScore": 3,
+            "saltinessScore": 4,
+            "sweetnessScore": 1,
+            "calorieScore": 3,
+            "sourScore": 1,
+            "createdAt": "2021-12-16T15:06:01.875Z",
+            "updatedAt": "2021-12-16T15:06:01.875Z",
+            "__v": 0
+        },
+    ];
 
     
     
@@ -72,21 +154,45 @@ const Rekomendasi = () => {
             sourScoreMax: sourMax.sourScore,
         }
     }
+
     
     function rekNormalisai(data){
-        //console.log(kepentingState.sourScore)
         const getNilaiBobot = data;
+        const kepentingan = {
+            priceScore: state.priceScore/state.totalScore,
+            spicinessScore: state.spicinessScore/state.totalScore,
+            saltinessScore: state.saltinessScore/state.totalScore,
+            sweetnessScore: state.sweetnessScore/state.totalScore,
+            calorieScore: state.calorieScore/state.totalScore,
+            sourScore: state.sourScore/state.totalScore,
+        };
         const maxmin = getMinMax(getNilaiBobot);
+        //console.log(state.priceScore, "/", state.totalScore,"=",kepentingan);
         const rekomNormalisasi = data.map(function(testRek){
+            const finals = ((maxmin.priceScoreMin/testRek.priceScore)* kepentingan.priceScore) +
+            ((testRek.spicinessScore/ maxmin.spicinessScoreMax)* kepentingan.spicinessScore) +
+            ((testRek.saltinessScore/ maxmin.saltinessScoreMax)* kepentingan.saltinessScore) +
+            ((testRek.sweetnessScore/ maxmin.sweetnessScoreMax)* kepentingan.sweetnessScore) +
+            ((testRek.calorieScore/ maxmin.calorieScoreMax)* kepentingan.calorieScore) +
+            ((testRek.sourScore/ maxmin.sourScoreMax)* kepentingan.sourScore);
+            //console.log(testRek.priceScore);
+            // console.log("(",maxmin.priceScoreMin,"/",testRek.priceScore,")*", kepentingState.priceScore,") +((",testRek.spicinessScore,"/", maxmin.spicinessScoreMax,")*", kepentingState.spicinessScore ,")+((",
+            // testRek.saltinessScore, "/", maxmin.saltinessScoreMax,")*", kepentingState.saltinessScore,") +((",
+            // testRek.sweetnessScore, "/", maxmin.sweetnessScoreMax,")*", kepentingState.sweetnessScore,") +((",
+            // testRek.calorieScore, "/", maxmin.calorieScoreMax,")*", kepentingState.calorieScore,") +((",
+            // testRek.sourScore, "/", maxmin.sourScoreMax,")*", kepentingState.sourScore,")= ",finals) ;
+            console.log("Menu & Skor :",testRek.menutitle,finals)
             return {
                 ...testRek,
-                FinalScore: ((maxmin.priceScoreMin/testRek.priceScore)* kepentingState.priceScore) +
-                            ((testRek.spicinessScore/ maxmin.spicinessScoreMax)* kepentingState.spicinessScore) +
-                            ((testRek.saltinessScore/ maxmin.saltinessScoreMax)* kepentingState.saltinessScore) +
-                            ((testRek.sweetnessScore/ maxmin.sweetnessScoreMax)* kepentingState.sweetnessScore) +
-                            ((testRek.calorieScore/ maxmin.calorieScoreMax)* kepentingState.calorieScore) +
-                            ((testRek.sourScore/ maxmin.sourScoreMax)* kepentingState.sourScore) 
+                FinalScore: ((maxmin.priceScoreMin/testRek.priceScore)* kepentingan.priceScore) +
+                            ((testRek.spicinessScore/ maxmin.spicinessScoreMax)* kepentingan.spicinessScore) +
+                            ((testRek.saltinessScore/ maxmin.saltinessScoreMax)* kepentingan.saltinessScore) +
+                            ((testRek.sweetnessScore/ maxmin.sweetnessScoreMax)* kepentingan.sweetnessScore) +
+                            ((testRek.calorieScore/ maxmin.calorieScoreMax)* kepentingan.calorieScore) +
+                            ((testRek.sourScore/ maxmin.sourScoreMax)* kepentingan.sourScore),
+            
             }
+            
         })
         return rekomNormalisasi
     }
@@ -125,31 +231,16 @@ const Rekomendasi = () => {
                 ...prevState,
                 [name] : value,
             }));
+            
         }
-        setKepentingaState({
-            priceScore: state.priceScore/state.totalScore,
-            spicinessScore: state.spicinessScore/state.totalScore,
-            saltinessScore: state.saltinessScore/state.totalScore,
-            sweetnessScore: state.sweetnessScore/state.totalScore,
-            calorieScore: state.calorieScore/state.totalScore,
-            sourScore: state.sourScore/state.totalScore,
-
-            priceMin: Math.min.apply(Math, fakeMenu.map(x => x.priceScore)),
-            spicinessMax: Math.max.apply(Math, fakeMenu.map(x => x.spicinessScore)),
-            saltinessMax: Math.max.apply(Math, fakeMenu.map(x => x.saltinessScore)),
-            sweetnessMax: Math.max.apply(Math, fakeMenu.map(x => x.sweetnessScore)),
-            calorieMax: Math.max.apply(Math, fakeMenu.map(x => x.calorieScore)),
-            sourMax: Math.max.apply(Math, fakeMenu.map(x => x.sourScore)),
-        })
+        
 
     };
 
     const sorted = resultData.sort((a, b)=>{
-        return b.FinalScore - a.FinalScore 
+            return b.FinalScore - a.FinalScore 
+        
     })
-
-    
-
     return (
         <div className="rekom-wraper">
             <div className="rekom-container">
@@ -308,16 +399,21 @@ const Rekomendasi = () => {
                                     isLoading ?
                                     <CircularProgress />
                                     :
+
                                     <div className="result">
                                         { 
                                             sorted.map((result, index) => ( index >= 9 ?
-                                                '' : (<CardMenu key={index} price={result.price} title={result.menutitle} image={result.pic} rank={index+1} data={result._id} />)
+                                                '' : (<CardMenu 
+                                                        key={index} 
+                                                        price={result.price} 
+                                                        title={result.menutitle} 
+                                                        image={result.pic} 
+                                                        rank={index+1} 
+                                                        data={result._id} />)
                                             ))
-                                                
-                                                
-                                            
                                         }
                                     </div>
+                                    
                                 }
                             </div>
                             :
