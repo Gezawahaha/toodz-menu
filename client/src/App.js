@@ -8,20 +8,24 @@ import { setMenu } from './redux/restoSlice'
 
 const App = () => {
     const dispatch = useDispatch();
-    const axioxInstance =axios.create({baseURL:process.env.REACT_APP_API_URL});
+    const axiosInstance = axios.create({
+        baseURL: 'https://cors-anywhere.herokuapp.com/https://wahaha-global-m83ezqh16-gezawahaha.vercel.app/api/Toodzhouse/',
+        headers: {'Content-Type': 'application/json'}
+        });
     useEffect(() => {
         
         const getAllMenu = async () =>{
             try {
-                const res = await  axioxInstance.get("menus");
-                dispatch(setMenu({menu: res.data}));
+                const res = await axiosInstance.get("menu");
+                dispatch(setMenu({menu: res.data.data}));
             } catch (err) {
                 console.log(err);
             }
+           
         };
         getAllMenu();
-    }, [dispatch,axioxInstance]);
-
+    }, [dispatch,axiosInstance]);
+    
 
     return (
         <div>
