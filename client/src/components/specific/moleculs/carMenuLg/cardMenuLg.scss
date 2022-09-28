@@ -11,7 +11,7 @@
     .btn-back{
         color: black;
         display: flex;
-        width: 50%;
+        width: 100%;
         align-items: center;
         .back{
             width: 50px;
@@ -19,15 +19,15 @@
             display: flex;
             flex-direction: row;
         }
-            h1{
-                text-decoration: none;
-                
-            }
+        h1{
+            text-decoration: none;
+            
+        }
         
     }
-
-.container-cardmenuLG{
-    display: flex;
+    
+    .container-cardmenuLG{
+        display: flex;
     flex-wrap: wrap;
     width: 700px;
     flex-direction: Row;

@@ -1,6 +1,6 @@
 import './home.scss'
 //import { AcUnit } from '@material-ui/icons'
-import React from 'react'
+import React, { useState } from 'react'
 import { ambianceimg, ambianceimg2, ambianceimg3, logoRekomendasi, reviewapp } from '../../assets'
 import {  CardMenu, CardRekomU } from '../../components/specific'
 import { Fade } from 'react-slideshow-image'
@@ -12,6 +12,7 @@ import { selectRestoMenu} from '../../redux/restoSlice'
 const Home = () => {
     const fakeMenu= useSelector(selectRestoMenu);
     const imgAmbiance = [ambianceimg, ambianceimg2, ambianceimg3];
+    const [isLoading, setLoading] = useState(true);
 
     //console.log(fakeMenu);
     return (
@@ -24,7 +25,7 @@ const Home = () => {
                             <CardRekomU tittle={"Decide a Menu"} to={'menu'}/>
                         </div>
                         <div className="conten1-img">
-                            <img src={logoRekomendasi} alt="tes"></img>
+                            <img src={logoRekomendasi} className={`img-cardmenu ${isLoading ? 'skeleton' : ''}`} onLoad={()=> setLoading(false)} alt="menu apps"></img>
                         </div>
                     </div>
 

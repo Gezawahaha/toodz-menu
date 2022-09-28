@@ -1,5 +1,5 @@
 //import { ButtonBase } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 // import {  useDispatch } from 'react-redux'
@@ -17,13 +17,15 @@ const CardMenu = ({title, image, price, data, id, click, home, rank , from}) => 
     //const dispatch = useDispatch()
     //const { counterPlus, counterMin} = bindActionCreators(actionCreator, dispatch);
     
-//console.log(id)
+    //console.log(id)
+    
+    const [isLoading, setLoading] = useState(true)
     return (
-        <div className="container-cardmenu">
+        <div className="container-cardmenu" >
             { rank ? <p>{rank}</p>:''}
-            <Link to={{pathname:"/menudetail/", menu: data, from: from}}>
+            <Link to={{pathname:"/menudetail/", menu: data, from: from}} >
                 <div className="img-cover" >
-                    <img className="img-cardmenu" src={image} alt="foodimg"/>
+                    <img className={`img-cardmenu ${isLoading ? 'skeleton' : ''}`} onLoadedData={()=> setLoading(false)} src={image} alt="foodimg"/>
                 </div>
             </Link>
             
