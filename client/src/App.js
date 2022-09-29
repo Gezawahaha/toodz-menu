@@ -24,7 +24,7 @@ const App = () => {
             }
            
         };
-        // getAllMenu();
+        getAllMenu();
 
         // async function go(){
         //     try{
