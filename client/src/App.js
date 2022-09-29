@@ -17,7 +17,8 @@ const App = () => {
         const getAllMenu = async () =>{
             try {
                 const res = await axiosInstance.get("Toodzhouse/menu");
-                dispatch(setMenu({menu: res.data.data }));
+                console.log( res.data )
+                // dispatch(setMenu({menu: res.data.data }));
             } catch (err) {
                 console.log(err);
             }
