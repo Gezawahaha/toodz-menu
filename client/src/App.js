@@ -8,22 +8,35 @@ import { setMenu } from './redux/restoSlice'
 
 const App = () => {
     const dispatch = useDispatch();
+    const axiosInstance = axios.create({baseURL:process.env.REACT_APP_API_KEY});
+    
     
     useEffect(() => {
         
+        
         const getAllMenu = async () =>{
             try {
-                const res = await axios.get("api/Toodzhouse/menu");
+                const res = await axiosInstance.get("Toodzhouse/menu");
                 dispatch(setMenu({menu: res.data.data}));
-                console.log(res.data);
             } catch (err) {
-                dispatch(setMenu({menu: { title: "Sate Padang", price: 20000, food_id: 1, categories: "Food", img: "https://img.inews.co.id/media/822/files/inews_new/2021/05/18/mencicipi_makanan_khas_indonesia.jpg" }}));
                 console.log(err);
             }
            
         };
         getAllMenu();
-    }, [dispatch]);
+
+        // async function go(){
+        //     try{
+        //         const res = await fetch('https://wahaha-global-api.vercel.app/api/pets')
+        //         const data = await res.json()
+        //         console.log(data)
+        //     }catch(err){
+        //       console.log(err)
+        //     }
+        //   }
+          
+        // go();          
+    }, [dispatch, axiosInstance]);
     
 
     return (
