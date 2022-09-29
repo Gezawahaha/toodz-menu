@@ -17,13 +17,13 @@ const App = () => {
         const getAllMenu = async () =>{
             try {
                 const res = await axiosInstance.get("Toodzhouse/menu");
-                dispatch(setMenu({menu: res.data.data}));
+                dispatch(setMenu({menu: res.data.data }));
             } catch (err) {
                 console.log(err);
             }
            
         };
-        getAllMenu();
+        // getAllMenu();
 
         // async function go(){
         //     try{
